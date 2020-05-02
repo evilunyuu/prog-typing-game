@@ -9,6 +9,7 @@ include_directories(${SDL2_INCLUDE_DIRS})
 add_executable(prog-typing-game
 	main.cc
 	Window.cc
+	GameWindow.cc
 	)
 	
 target_link_libraries(prog-typing-game ${SDL2_LIBRARIES})

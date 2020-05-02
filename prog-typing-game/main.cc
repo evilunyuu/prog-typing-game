@@ -4,7 +4,7 @@
 
 #include <SDL2/SDL.h>
 
-#include "Window.h"
+#include "GameWindow.h"
 
 int main(int argc, char **argv)
 {
@@ -14,7 +14,8 @@ int main(int argc, char **argv)
 			throw std::runtime_error("SDL_Init() failed!");
 
 		// Window creation
-		auto win = Window::create();
+		auto win = GameWindow::create();
+
 
 
 

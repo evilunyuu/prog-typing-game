@@ -13,22 +13,31 @@
 
 class Window
 {
-public:
-	static constexpr int DEFAULT_WIDTH = 1280;
-	static constexpr int DEFAULT_HEIGHT = 800;
 protected:
 	std::shared_ptr<SDL_Window> _window { nullptr };
+	std::shared_ptr<SDL_Renderer> _renderer { nullptr };
 	int _width { 0 };
 	int _height { 0 };
 
-public:
-	[[deprecated("Don't call this constructor directly!")]]
 	Window(int width, int height);
+
+public:
+	Window(const Window &) = delete;
 	virtual ~Window() = default;
 
-	static std::shared_ptr<Window> create(
-			int width = DEFAULT_WIDTH,
-			int height = DEFAULT_HEIGHT);
+	// Window width getter
+	int width() const { return _width; }
+
+	// Window height getter
+	int height() const { return _height; }
+
+public:
+	// Main loop routine
+	void main_loop();
+
+	virtual void handle_event(const SDL_Event & event) = 0;
+	virtual void process_logic() = 0;
+	virtual void render_frame() = 0;
 };
 
 

@@ -21,9 +21,32 @@ Window::Window(int width, int height):
 			SDL_DestroyWindow);
 	if (_window == nullptr)
 		throw std::runtime_error("SDL_CreateWindow failed!");
+
+	_renderer = std::shared_ptr<SDL_Renderer>(
+			SDL_CreateRenderer(
+					_window.get(),
+					-1,
+					SDL_RENDERER_ACCELERATED),
+			SDL_DestroyRenderer);
+	if (_renderer == nullptr)
+		throw std::runtime_error("SDL_CreateRenderer failed!");
 }
 
-std::shared_ptr<Window> Window::create(int width, int height)
+void Window::main_loop()
 {
-	return std::make_shared<Window>(width, height);
+	SDL_Event event;
+
+	// Main loop
+	for (;;) {
+		// Handle all events
+		while (SDL_PollEvent(&event) > 0) {
+			if (event.type == SDL_QUIT) return; // TODO: Add a confirmation?
+			handle_event(event);
+		}
+
+		process_logic();
+
+		render_frame();
+		SDL_RenderPresent( _renderer.get() );
+	}
 }
