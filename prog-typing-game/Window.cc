@@ -35,6 +35,7 @@ Window::Window(int width, int height):
 void Window::main_loop()
 {
 	SDL_Event event;
+	const Uint8 * keys = SDL_GetKeyboardState(nullptr);
 
 	// Main loop
 	for (;;) {
@@ -43,6 +44,8 @@ void Window::main_loop()
 			if (event.type == SDL_QUIT) return; // TODO: Add a confirmation?
 			handle_event(event);
 		}
+
+		handle_keys(keys);
 
 		process_logic();
 

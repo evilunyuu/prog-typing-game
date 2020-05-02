@@ -17,10 +17,7 @@ int main(int argc, char **argv)
 		auto win = GameWindow::create();
 
 
-
-
-		// TODO: This delay is to be deleted later on
-		SDL_Delay(2000);
+		win->main_loop();
 
 	} catch (const std::exception& e) {
 		std::cout <<

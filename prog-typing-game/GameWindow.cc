@@ -12,6 +12,11 @@ void GameWindow::handle_event(const SDL_Event & event)
 
 }
 
+void GameWindow::handle_keys(const Uint8 * keys)
+{
+
+}
+
 void GameWindow::process_logic()
 {
 

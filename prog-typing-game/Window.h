@@ -36,6 +36,7 @@ public:
 	void main_loop();
 
 	virtual void handle_event(const SDL_Event & event) = 0;
+	virtual void handle_keys(const Uint8 * keys) = 0;
 	virtual void process_logic() = 0;
 	virtual void render_frame() = 0;
 };
