@@ -16,12 +16,9 @@ private:
 	static constexpr int DEFAULT_WIDTH = 1280;
 	static constexpr int DEFAULT_HEIGHT = 800;
 
-public:
-	[[deprecated("Do not call this constructor directly!")]]
 	GameWindow(): Window(DEFAULT_WIDTH, DEFAULT_HEIGHT) {}
-
+public:
 	GameWindow(const GameWindow &) = delete;
-
 	virtual ~GameWindow() = default;
 
 	virtual void handle_event(const SDL_Event & event);
@@ -31,7 +28,8 @@ public:
 
 
 	static std::shared_ptr<GameWindow> create() {
-		return std::make_shared<GameWindow>();
+		struct GameWindowInstantiator: public GameWindow {};
+		return std::make_shared<GameWindowInstantiator>();
 	}
 };
 
