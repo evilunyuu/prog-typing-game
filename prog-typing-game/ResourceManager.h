@@ -23,8 +23,10 @@ class DummyResource: public Resource // for testing
 
 class ResourceManager
 {
+public:
+	using Ptr = std::shared_ptr<ResourceManager>;
 private:
-	static std::shared_ptr<ResourceManager> s_instance;
+	static Ptr s_instance;
 
 	std::map<unsigned, Resource::Ptr> _resources;
 	unsigned _next_rid { 1 };
@@ -34,17 +36,13 @@ public:
 	ResourceManager(const ResourceManager &) = delete;
 	~ResourceManager() = default;
 
-	using Ptr = std::shared_ptr<ResourceManager>;
-
 	static void init();
 	static Ptr instance();
 
 	// Resource getter
 	Resource::Ptr resource(unsigned rid);
 
-	// A DummyResource creation
-	unsigned create_dummy_resource();
-
+	// Resource creation
 	template <typename T, typename... Args>
 	unsigned create(Args&&... args) {
 		static_assert(std::is_base_of<Resource, T>());

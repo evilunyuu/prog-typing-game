@@ -16,7 +16,7 @@ void ResourceManager::init()
 {
 	if (s_instance != nullptr)
 		throw std::runtime_error(
-				"The resource manager has already been initialized!");
+				"The resource manager has already been initialised!");
 
 	struct ResourceManagerInstantiator: public ResourceManager {};
 	s_instance = std::make_shared<ResourceManagerInstantiator>();
@@ -39,13 +39,4 @@ Resource::Ptr ResourceManager::resource(unsigned rid)
 	}
 	return iter->second;
 }
-
-// A DummyResource creation
-unsigned ResourceManager::create_dummy_resource()
-{
-	unsigned rid = _next_rid++;
-	_resources[rid] = std::make_shared<DummyResource>();
-	return rid;
-}
-
 
