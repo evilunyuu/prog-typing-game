@@ -13,6 +13,9 @@
 
 class Window
 {
+public:
+	using Ptr = std::shared_ptr<Window>;
+	using RendererPtr = std::shared_ptr<SDL_Renderer>;
 protected:
 	std::shared_ptr<SDL_Window> _window { nullptr };
 	std::shared_ptr<SDL_Renderer> _renderer { nullptr };
@@ -30,6 +33,9 @@ public:
 
 	// Window height getter
 	int height() const { return _height; }
+
+	// Renderer getter
+	RendererPtr renderer() { return _renderer; }
 
 public:
 	// Main loop routine

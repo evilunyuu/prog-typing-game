@@ -11,6 +11,7 @@ add_executable(prog-typing-game
 	Window.cc
 	GameWindow.cc
 	ResourceManager.cc
+	ProgramStateManager.cc
 	)
 	
 target_link_libraries(prog-typing-game ${SDL2_LIBRARIES})
