@@ -81,6 +81,17 @@ public:
 		return sid;
 	}
 
+	// State handler addition
+	unsigned add_handler(ProgramStateHandler::Ptr handler) {
+		if (handler == nullptr)
+			throw std::runtime_error(
+					"An attempt was made to add a "
+					"nullptr as a state handler!");
+		unsigned sid = _next_sid++;
+		_handlers[sid] = handler;
+		return sid;
+	}
+
 	inline bool empty() const { return _states.empty(); }
 
 	// Current state id getter (0 = no state)
